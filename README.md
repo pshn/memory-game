@@ -1,5 +1,21 @@
 # Memory Game Project
 
+- What's the ideal workflow?
+- How many files do I need?
+- Do I modify the HTML first or the CSS?
+- How many JavaScript functions do I need?
+- Should my function be this many lines of code?
+
+Happy Path
+Sad Path
+Completion
+
+Global - 
+Move count
+Reset
+
+Animations
+
 ## Table of Contents
 
 * [Instructions](#instructions)
