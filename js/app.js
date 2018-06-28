@@ -2,17 +2,16 @@
  * Create a list that holds all of your cards ✅
  */
 
-let cards = ["diamond", "paper-plane", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
+let cards = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
 
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below ✅
  *   - loop through each card and create its HTML ✅
- *   - add each card's HTML to the page
+ *   - add each card's HTML to the page ✅
  */
 
 const deck = document.body.querySelector('.deck');
-const frag = document.createDocumentFragment();
 
 let shuffledCards = shuffle(cards);
 
@@ -47,7 +46,6 @@ function shuffle(array) {
     return array;
 }
 
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -58,3 +56,13 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+ let cardsArray = document.querySelectorAll('li.card');
+
+ function revealCard(){
+   this.classList.add('open', 'show');
+ }
+
+ cardsArray.forEach(function(c){
+   c.addEventListener('click', revealCard)
+ });
