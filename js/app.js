@@ -60,37 +60,38 @@ function shuffle(array) {
  let openCardsArray = [];
  let cardsArray = document.querySelectorAll('li.card');
 
+ function clearCardsList(a){
+   a.length = 0;
+ };
+
  function compareTwoCards(arr){
    if (arr[0].firstChild.className === arr[1].firstChild.className){
-     let addOpenClassName = function(){
+     let addMatchClassName = function(){
        arr.forEach(function(el){
          el.classList.add('match');
        });
-       arr.length = 0
+       clearCardsList(arr);
      }
-     addOpenClassName();
+     addMatchClassName();
    } else {
-     let removeClassNames = function(){
-       // console.log(arr);
-       arr.forEach(function(el){
-         // console.log('removeClassNames, about to remove');
-         // el.classList.remove('open');
-         // el.classList.remove('show');
-       });
-     }
-     removeClassNames();
-     arr.length = 0
-     console.log('cleared', arr);
+       function removeClassNames(){
+         arr.forEach(function(el){
+           el.classList.remove('open');
+           el.classList.remove('show');
+           console.log("hey!")
+         });
+        console.log('remove!')
+       }
+       removeClassNames();
+       clearCardsList(arr);
    } //else
- }
+ } //compareTwoCards f(n)
 
  function revealCard(){
    this.classList.add('open', 'show');
    openCardsArray.push(this);
    if(openCardsArray.length === 2){
      compareTwoCards(openCardsArray);
-   } else {
-     console.log('revealCard f(n), with 1 element in array')
    }
  }
 
