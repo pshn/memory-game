@@ -116,19 +116,19 @@ function compareTwoCards(arr){
 function displayWinModal(){
   var modal = document.querySelector(".modal");
   var title = document.querySelector(".modal-title");
-  var resetButton = document.querySelector(".reset-button");
+  var restartButton = document.querySelector(".restart");
 
   function showModal() {
     title.innerHTML = "You won!!!!"
     modal.classList.add("show-modal");
   }
 
-  function resetGame(){
-    counter = 0;
+  function restartGame(){
     modal.classList.remove("show-modal");
+    location.reload();
   }
 
-  resetButton.addEventListener("click", resetGame);
+  restartButton.addEventListener("click", restartGame);
 
   showModal();
 }
