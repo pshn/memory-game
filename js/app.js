@@ -52,59 +52,61 @@ function shuffle(array) {
  *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one) ✅
  *  - if the list already has another card, check to see if the two cards match ✅
  *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one) ✅
- *    + if the cards do not match, remove the cards from the list ✅ and hide the card's symbol (put this functionality in another function that you call from this one)
+ *    + if the cards do not match, remove the cards from the list ✅ and hide the card's symbol (put this functionality in another function that you call from this one) ✅
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one) ✅
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- let counter = 0;
- let moves = document.querySelector('.moves');
+let counter = 0;
+let moves = document.querySelector('.moves');
+moves.innerHTML = counter;
+
+let openCardsArray = [];
+let cardsArray = document.querySelectorAll('li.card');
+
+function increaseCounter(){
+ counter++;
  moves.innerHTML = counter;
+}
 
- let openCardsArray = [];
- let cardsArray = document.querySelectorAll('li.card');
+function clearCardsList(a){
+ a.length = 0;
+};
 
- function increaseCounter(){
-   counter++;
-   moves.innerHTML = counter;
- }
-
- function clearCardsList(a){
-   a.length = 0;
- };
-
- function compareTwoCards(arr){
-   if (arr[0].firstChild.className === arr[1].firstChild.className){
-     let addMatchClassName = function(){
-       arr.forEach(function(el){
-         el.classList.add('match');
-       });
-       clearCardsList(arr);
-     }
-     addMatchClassName();
-   } else {
-       function removeClassNames(){
-         arr.forEach(function(el){
-           el.classList.remove('open');
-           el.classList.remove('show');
-           console.log("hey!")
-         });
-        console.log('remove!')
-       }
-       removeClassNames();
-       clearCardsList(arr);
-   } //else
- } //compareTwoCards f(n)
-
- function revealCard(){
-   this.classList.add('open', 'show');
-   openCardsArray.push(this);
-   if(openCardsArray.length === 2){
-     increaseCounter();
-     compareTwoCards(openCardsArray);
+function compareTwoCards(arr){
+ console.log('compare', arr)
+ if (arr[0].firstChild.className === arr[1].firstChild.className){
+   let addMatchClassName = function(){
+     arr.forEach(function(card){
+       card.classList.add('match');
+       console.log('MATCHED!!!!!')
+     });
+     clearCardsList(arr);
    }
- }
+   addMatchClassName();
+ } else {
+     function removeClassNames(){
+       setTimeout(function(){
+         arr.forEach(function(card){
+           card.classList.remove('open', 'show');
+         });
+         clearCardsList(arr);
+       }, 500);
+     }
+     removeClassNames();
+     console.log('not matched')
+ } //else
+} //compareTwoCards f(n)
 
- cardsArray.forEach(function(c){
-   c.addEventListener('click', revealCard)
- });
+function revealCard(){
+ this.classList.add('open', 'show');
+ openCardsArray.push(this);
+ if(openCardsArray.length === 2){
+   increaseCounter();
+   compareTwoCards(openCardsArray);
+ }
+}
+
+cardsArray.forEach(function(c){
+ c.addEventListener('click', revealCard)
+});
