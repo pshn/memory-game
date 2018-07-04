@@ -2,8 +2,8 @@
 * Create a list that holds all of your cards ✅
 */
 
-// let cards = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
-let cards = ["leaf", "bomb", "leaf", "bomb"];
+let cards = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
+// let cards = ["leaf", "bomb", "leaf", "bomb"];
 
 /*
 * Display the cards on the page
@@ -54,7 +54,7 @@ function shuffle(array) {
 *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one) ✅
 *    + if the cards do not match, remove the cards from the list ✅ and hide the card's symbol (put this functionality in another function that you call from this one) ✅
 *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one) ✅
-*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one) ✅
 */
 
 let counter = 0;
@@ -64,6 +64,21 @@ let allMatchedCards = [];
 function increaseCounter(){
   counter++;
   moves.innerHTML = counter;
+
+  function starRating(){
+    if(counter % 5 === 0){
+      let star = document.body.querySelector('.fa-star');
+      star.classList.remove('fa-star');
+      star.classList.add('fa-star-o');
+      // NEXT - TIMER
+      // - FIX RESET button
+      // - STYLING
+      // - USABILITY - RESPONSIVE DESIGN
+      // - README.md filed
+      // - COMMENTS
+    }
+  }
+  starRating();
 }
 
 function clearCardsList(a){
@@ -93,7 +108,7 @@ function compareTwoCards(arr){
         card.classList.add('match');
 
         allMatchedCards.push(card);
-        if(allMatchedCards.length === 4){
+        if(allMatchedCards.length === 16){
           displayWinModal();
         }
       });
@@ -119,7 +134,7 @@ function displayWinModal(){
   var restartButton = document.querySelector(".restart");
 
   function showModal() {
-    title.innerHTML = "You won!!!!"
+    title.innerHTML = "You won!!!! with " + counter + " moves"
     modal.classList.add("show-modal");
   }
 
