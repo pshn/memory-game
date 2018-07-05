@@ -14,9 +14,10 @@
   <div class="container">
     <div class="modal">
       <div class="modal-content">
+        <ul class="modal-stars">
+        </ul>
         <h1 class="modal-title"></h1>
-        <p>Do you want to play again?</p>
-        <button class="restart">play again</button>
+        <button class="restart">play again?</button>
       </div>
     </div>
     <header>
@@ -30,9 +31,9 @@
         <li><i class="fa fa-star"></i></li>
       </ul>
 
-      <span class="moves"></span> Moves
+      <span class="moves">0</span> Moves
 
-      <div class="restart">
+      <div class="restart" onclick="location.reload();">
         <i class="fa fa-repeat"></i>
       </div>
     </section>

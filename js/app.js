@@ -4,6 +4,8 @@
 
 let cards = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
 // let cards = ["leaf", "bomb", "leaf", "bomb"];
+// let cards = ["bomb", "bomb"];
+
 
 /*
 * Display the cards on the page
@@ -68,15 +70,26 @@ function increaseCounter(){
 
   function starRating(){
     if(counter % 10 === 0){
-      let star = document.body.querySelector('.fa-star');
-      star.classList.remove('fa-star');
-      star.classList.add('fa-star-o');
-      // NEXT - TIMER
-      // - FIX RESET button
-      // - STYLING
+      let stars = document.body.querySelector('.fa-star');
+      stars.classList.remove('fa-star');
+      stars.classList.add('fa-star-o');
     }
   }
   starRating();
+}
+
+let startTime = 0;
+let totalTime = 0;
+
+function startTimer(){
+  if(counter === 1){
+    startTime = Date.now();
+    console.log(startTime)
+  }
+}
+
+function calculateTime(end){
+  totalTime = Math.floor((end - startTime)/1000);
 }
 
 // A function to clear cards that are being compared
@@ -103,6 +116,8 @@ function revealCard(){
 
 // Compare two cards with two scenarios, successful match and failure match
 function compareTwoCards(arr){
+  startTimer();
+
   if (arr[0].firstChild.className === arr[1].firstChild.className){
     function addMatchClassName(){
       arr.forEach(function(card){
@@ -132,14 +147,23 @@ function compareTwoCards(arr){
 
 // A modal that shows when all cards are matched
 function displayWinModal(){
-  var modal = document.querySelector(".modal");
-  var title = document.querySelector(".modal-title");
-  var restartButton = document.querySelector(".restart");
+  let modal = document.querySelector(".modal");
+  let title = document.querySelector(".modal-title");
+  let restartButton = document.querySelector(".restart");
 
   function showModal() {
-    let endTime = Date.now()
-    console.log(endTime)
-    title.innerHTML = "You won!!!! with " + counter + " moves"
+    endTime = Date.now()
+    calculateTime(endTime);
+
+    let modalStarsUl = document.body.querySelector('.modal-stars');
+    let starsUl = document.body.querySelectorAll('.stars li');
+
+    starsUl.forEach(function(li){
+      li.childNodes[0].classList.add("fa-3x")
+      modalStarsUl.append(li)
+    })
+
+    title.innerHTML = `Congratulations! You matched all the cards in ${counter} moves within ${totalTime} seconds!`
     modal.classList.add("show-modal");
   }
 
