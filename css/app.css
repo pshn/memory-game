@@ -118,8 +118,8 @@ h1 {
 ul.modal-stars {
     display: inline-flex;
     list-style: none;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 ul.modal-stars li {
