@@ -61,26 +61,25 @@ let counter = 0;
 let moves = document.querySelector('.moves');
 let allMatchedCards = [];
 
+// A counter to keep track on number of moves
 function increaseCounter(){
   counter++;
   moves.innerHTML = counter;
 
   function starRating(){
-    if(counter % 5 === 0){
+    if(counter % 10 === 0){
       let star = document.body.querySelector('.fa-star');
       star.classList.remove('fa-star');
       star.classList.add('fa-star-o');
       // NEXT - TIMER
       // - FIX RESET button
       // - STYLING
-      // - USABILITY - RESPONSIVE DESIGN
-      // - README.md filed
-      // - COMMENTS
     }
   }
   starRating();
 }
 
+// A function to clear cards that are being compared
 function clearCardsList(a){
   a.length = 0;
 };
@@ -88,6 +87,7 @@ function clearCardsList(a){
 let openCardsArray = [];
 let cardsArray = document.querySelectorAll('li.card');
 
+// Add an event listener to each card to listen for user interaction, 'click'
 cardsArray.forEach(function(c){
   c.addEventListener('click', revealCard)
 });
@@ -101,12 +101,14 @@ function revealCard(){
   }
 }
 
+// Compare two cards with two scenarios, successful match and failure match
 function compareTwoCards(arr){
   if (arr[0].firstChild.className === arr[1].firstChild.className){
     function addMatchClassName(){
       arr.forEach(function(card){
         card.classList.add('match');
 
+        // Successful matched cards are counted to show a modal
         allMatchedCards.push(card);
         if(allMatchedCards.length === 16){
           displayWinModal();
@@ -128,16 +130,20 @@ function compareTwoCards(arr){
   } //else
 } //compareTwoCards f(n)
 
+// A modal that shows when all cards are matched
 function displayWinModal(){
   var modal = document.querySelector(".modal");
   var title = document.querySelector(".modal-title");
   var restartButton = document.querySelector(".restart");
 
   function showModal() {
+    let endTime = Date.now()
+    console.log(endTime)
     title.innerHTML = "You won!!!! with " + counter + " moves"
     modal.classList.add("show-modal");
   }
 
+  // A function that resets the game
   function restartGame(){
     modal.classList.remove("show-modal");
     location.reload();
