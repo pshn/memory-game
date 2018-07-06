@@ -1,5 +1,5 @@
-let icons = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
-// let icons = ["leaf", "bomb", "leaf", "bomb"];
+// let icons = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
+let icons = ["leaf", "bomb", "leaf", "bomb"];
 
 const deck = document.body.querySelector('.deck');
 let shuffledCards = shuffle(icons);
@@ -81,22 +81,21 @@ let allMatchedCards = [];
 
 // Compare two cards with two scenarios, successful match and failure match
 function compareTwoCards(arr){
-
   if (arr[0].firstChild.className === arr[1].firstChild.className){
     (function(){
       arr.forEach(function(card){
         card.classList.add('match');
 
-        // Successful matched cards are counted to show a modal
+        // Added to the matched cards array
         allMatchedCards.push(card);
-        if(allMatchedCards.length === 16){
-          displayWinModal();
-        }
       });
       arr.length = 0;
+      increaseCounter();
     })();
 
-    increaseCounter();
+    if(allMatchedCards.length === icons.length){
+      displayWinModal();
+    }
 
   } else {
     (function(){
@@ -112,8 +111,6 @@ function compareTwoCards(arr){
 
   } //else
 } //compareTwoCards f(n)
-
-
 
 // A modal that shows when all cards are matched
 function displayWinModal(){
