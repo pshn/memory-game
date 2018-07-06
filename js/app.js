@@ -1,5 +1,7 @@
 // let icons = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
-let icons = ["leaf", "bomb", "leaf", "bomb"];
+// let icons = ["leaf", "bomb", "leaf", "bomb"];
+let icons = ["bomb", "bomb"];
+
 
 const deck = document.body.querySelector('.deck');
 let shuffledCards = shuffle(icons);
@@ -113,10 +115,11 @@ function compareTwoCards(arr){
 } //compareTwoCards f(n)
 
 // A modal that shows when all cards are matched
+let modal = document.querySelector(".modal");
+let title = document.querySelector(".modal-title");
+let restartButton = document.querySelector(".restart");
+
 function displayWinModal(){
-  let modal = document.querySelector(".modal");
-  let title = document.querySelector(".modal-title");
-  let restartButton = document.querySelector(".restart");
 
   function showModal() {
     endTime = Date.now()
@@ -137,14 +140,17 @@ function displayWinModal(){
     title.innerHTML = `Congratulations! You matched all the cards in ${counter} moves within ${totalTime} seconds!`
     modal.classList.add("show-modal");
   }
-
-  // A function that resets the game
-  function restartGame(){
-    modal.classList.remove("show-modal");
-    location.reload();
-  }
-
-  restartButton.addEventListener("click", restartGame);
-
   showModal();
 }
+
+// A function that resets the game
+function restartGame(){
+  modal.classList.remove("show-modal");
+  allMatchedCards = [];
+  moves.innerHTML = 0;
+  cards.forEach(function(c){
+    c.classList.remove('open', 'show', 'match')
+  })
+}
+
+restartButton.addEventListener("click", restartGame);

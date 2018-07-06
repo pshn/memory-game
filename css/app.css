@@ -139,3 +139,62 @@ button:hover {
     color: #fff;
     box-shadow: 2px 2px 2px 0px rgba(0,0,0,.5)
 }
+/* @media (min-width: 480px) {
+  body {
+    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+  }
+
+  h1 {
+    font-size: 5rem;
+    color: #fff;
+  }
+
+  .deck {
+    width: 100%;
+    justify-content: space-between;
+    border-radius: 0px;
+    background: none;
+    box-shadow: none;
+  }
+
+  .deck .card {
+    width: 23%;
+    height: 13rem;
+    margin: .65rem 0px;
+  }
+
+  .deck .card.show {
+      font-size: 6rem;
+  }
+
+  .score-panel {
+    text-align: left;
+    color: #fff;
+    width: 345px;
+    margin-bottom: 10px;
+    font-size: 3rem;
+  }
+
+  .score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+    font-size: 1em;
+  }
+
+  .modal-content {
+    width: 80%
+  }
+
+  .modal-title {
+    color: #000;
+  }
+
+  .modal-stars {
+    font-size: 3rem;
+  }
+
+  button.restart {
+    font-size: 3rem;
+    color: #fff;
+  }
+} */
