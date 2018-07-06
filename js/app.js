@@ -1,5 +1,5 @@
-// let icons = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
-let icons = ["leaf", "bomb", "leaf", "bomb"];
+let icons = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
+// let icons = ["leaf", "bomb", "leaf", "bomb"];
 
 const deck = document.body.querySelector('.deck');
 let shuffledCards = shuffle(icons);
@@ -52,14 +52,20 @@ function changeStarRating(){
   }
 }
 
+let startTime = 0;
+let isFirstClick = false;
 let openCards = []; //Should only have 2 cards
 let cards = document.querySelectorAll('li.card');
 
 // Add an event listener to each card to listen for user interaction, 'click'
 cards.forEach(function(card){
   card.addEventListener('click', function(evt){
-    // console.log('what is evt?', evt) eventTarget
+    if(!isFirstClick){
+      isFirstClick = true;
+      startTime = Date.now();
+    }
 
+    // console.log('what is evt?', evt) eventTarget
     const ct = event.target;
     if(!openCards.includes(ct)) {
       ct.classList.add('open', 'show');
@@ -75,9 +81,6 @@ let allMatchedCards = [];
 
 // Compare two cards with two scenarios, successful match and failure match
 function compareTwoCards(arr){
-  // startTimer();
-  console.log('compare', arr[0])
-  console.log('compare', arr)
 
   if (arr[0].firstChild.className === arr[1].firstChild.className){
     (function(){
@@ -86,13 +89,15 @@ function compareTwoCards(arr){
 
         // Successful matched cards are counted to show a modal
         allMatchedCards.push(card);
-        if(allMatchedCards.length === 4){
+        if(allMatchedCards.length === 16){
           displayWinModal();
         }
       });
       arr.length = 0;
     })();
+
     increaseCounter();
+
   } else {
     (function(){
       setTimeout(function(){
@@ -102,23 +107,13 @@ function compareTwoCards(arr){
         arr.length = 0;
       }, 500);
     })();
+
     increaseCounter();
+
   } //else
 } //compareTwoCards f(n)
 
-let startTime = 0;
-let totalTime = 0;
 
-function startTimer(){
-  if(counter === 1){
-    startTime = Date.now();
-    console.log(startTime)
-  }
-}
-
-function calculateTime(end){
-  totalTime = Math.floor((end - startTime)/1000);
-}
 
 // A modal that shows when all cards are matched
 function displayWinModal(){
@@ -128,6 +123,10 @@ function displayWinModal(){
 
   function showModal() {
     endTime = Date.now()
+
+    function calculateTime(end){
+      totalTime = Math.floor((end - startTime)/1000);
+    }
     calculateTime(endTime);
 
     let modalStarsUl = document.body.querySelector('.modal-stars');
