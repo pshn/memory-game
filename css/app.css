@@ -139,13 +139,14 @@ button:hover {
     color: #fff;
     box-shadow: 2px 2px 2px 0px rgba(0,0,0,.5)
 }
-/* @media (min-width: 480px) {
+
+@media (max-width: 480px) {
   body {
     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
   }
 
   h1 {
-    font-size: 5rem;
+    font-size: 3rem;
     color: #fff;
   }
 
@@ -159,12 +160,11 @@ button:hover {
 
   .deck .card {
     width: 23%;
-    height: 13rem;
-    margin: .65rem 0px;
+    height: 5rem;
   }
 
   .deck .card.show {
-      font-size: 6rem;
+      font-size: 3rem;
   }
 
   .score-panel {
@@ -172,13 +172,12 @@ button:hover {
     color: #fff;
     width: 345px;
     margin-bottom: 10px;
-    font-size: 3rem;
+    font-size: 1.5rem;
   }
 
   .score-panel .stars li {
     list-style: none;
     display: inline-block;
-    font-size: 1em;
   }
 
   .modal-content {
@@ -197,4 +196,4 @@ button:hover {
     font-size: 3rem;
     color: #fff;
   }
-} */
+}

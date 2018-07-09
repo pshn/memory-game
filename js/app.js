@@ -1,6 +1,6 @@
-// let icons = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
+let icons = ["diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb", "diamond", "paper-plane-o", "anchor", "bolt", "cube", "leaf", "bicycle", "bomb"];
 // let icons = ["leaf", "bomb", "leaf", "bomb"];
-let icons = ["bomb", "bomb"];
+// let icons = ["bomb", "bomb"];
 
 
 const deck = document.body.querySelector('.deck');
@@ -44,11 +44,22 @@ function increaseCounter(){
   counter++;
   moves.innerHTML = counter;
   changeStarRating();
+
+  // MODULE PATTERN
+  // let ChangeStarRatingModule = (function(){
+  //   if(counter % 10 === 0){
+  //     let stars = document.body.querySelector('.fa-star');
+  //     stars.classList.remove('fa-star');
+  //     stars.classList.add('fa-star-o');
+  //   }
+  // })();
+  // ChangeStarRatingModule();
 }
 
+let stars = document.body.querySelector('.fa-star');
+console.log('stars', stars)
 function changeStarRating(){
   if(counter % 10 === 0){
-    let stars = document.body.querySelector('.fa-star');
     stars.classList.remove('fa-star');
     stars.classList.add('fa-star-o');
   }
@@ -146,6 +157,7 @@ function displayWinModal(){
 // A function that resets the game
 function restartGame(){
   modal.classList.remove("show-modal");
+  console.log('stars', stars)
   allMatchedCards = [];
   moves.innerHTML = 0;
   cards.forEach(function(c){
