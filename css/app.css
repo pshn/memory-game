@@ -33,6 +33,10 @@ h1 {
     font-weight: 300;
 }
 
+#timer {
+  margin-left: 40px;
+  display: inline;
+}
 /*
  * Styles for the deck of cards
  */
@@ -103,7 +107,7 @@ h1 {
     display: inline-block;
 }
 
-.score-panel .restart {
+.score-panel .reset {
     float: right;
     cursor: pointer;
 }
@@ -126,7 +130,7 @@ ul.modal-stars li {
     padding-right: 16px;
 }
 
-button.restart {
+button.reset {
     font-size: 1.5em;
     padding: .5em;
     width: 100%;
@@ -192,7 +196,7 @@ button:hover {
     font-size: 3rem;
   }
 
-  button.restart {
+  button.reset {
     font-size: 3rem;
     color: #fff;
   }

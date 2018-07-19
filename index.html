@@ -17,7 +17,7 @@
         <ul class="modal-stars">
         </ul>
         <h1 class="modal-title"></h1>
-        <button class="restart">play again?</button>
+        <button class="reset">play again?</button>
       </div>
     </div>
     <header>
@@ -32,8 +32,11 @@
       </ul>
 
       <span class="moves">0</span> Moves
-
-      <div class="restart" onclick="restartGame();">
+      <div id="timer">
+        <span class="minutes">00</span>:<span class="seconds">00</span>
+      </div>
+      </span>
+      <div class="reset" onclick="resetGame();">
         <i class="fa fa-repeat"></i>
       </div>
     </section>
